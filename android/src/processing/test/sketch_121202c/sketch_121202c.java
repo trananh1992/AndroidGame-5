@@ -21,31 +21,41 @@ PImage img5;
 int counter = 0;
 
 public void setup() {
-	//PImage image = loadImage("pirate.jpg");
-	//background(image);
+	
 	String s = "";
 	for(int i = 1; i < 6; i++) {
 		s = "p"+i+".png";
 		PImage img = loadImage(s);
 		imgs.add(img);
-	}
+	}/*
 	img1 = loadImage("p1.png");
 	img2 = loadImage("p2.png");
 	img3 = loadImage("p3.png");
 	img4 = loadImage("p4.png");
-	img5 = loadImage("p5.png");
-	frameRate(15);
+	img5 = loadImage("p5.png");*/
+	frameRate(10);
 }
 
 public void draw() {
+	background(255,255,255);
 	counter = (counter+1) % 5;
 	if (counter > 6) counter = 0;
+	
+	if (mousePressed) {
+		image(imgs.get(counter), 50, 50, 100, 100);
+	}
+	else {
+		fill(0,0,0);
+		textSize(32);
+		text("Pressed", 100, 300);
+		fill(counter, counter, 0);
+	}
 //	if(img == null) {
 //		fill(255,255,255);
 //		ellipse(50,50,50,50);
 //	}
 //	else {	
-	  
+/*	  
   if (mousePressed) {
 	  background(255,255,255);
 	  fill(0,0,0);
@@ -81,6 +91,7 @@ public void draw() {
 	  text("Pressed", 100, 300);
 	  fill(counter, counter, 0);
   }
+  */
 }
 
   public int sketchWidth() { return 480; }
