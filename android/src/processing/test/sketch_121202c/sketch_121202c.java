@@ -13,11 +13,7 @@ import java.util.*;
 public class sketch_121202c extends PApplet {
 
 ArrayList<PImage> imgs = new ArrayList<PImage>();
-PImage img1;
-PImage img2;
-PImage img3;
-PImage img4;
-PImage img5;
+Playable player;
 int counter = 0;
 
 public void setup() {
@@ -27,12 +23,8 @@ public void setup() {
 		s = "p"+i+".png";
 		PImage img = loadImage(s);
 		imgs.add(img);
-	}/*
-	img1 = loadImage("p1.png");
-	img2 = loadImage("p2.png");
-	img3 = loadImage("p3.png");
-	img4 = loadImage("p4.png");
-	img5 = loadImage("p5.png");*/
+	}
+	
 	frameRate(10);
 }
 
@@ -41,8 +33,10 @@ public void draw() {
 	counter = (counter+1) % 5;
 	if (counter > 6) counter = 0;
 	
+	image(imgs.get(counter), 50, 50, 100, 100);
+	
 	if (mousePressed) {
-		image(imgs.get(counter), 50, 50, 100, 100);
+		player = new Megaman();
 	}
 	else {
 		fill(0,0,0);
@@ -50,48 +44,19 @@ public void draw() {
 		text("Pressed", 100, 300);
 		fill(counter, counter, 0);
 	}
-//	if(img == null) {
-//		fill(255,255,255);
-//		ellipse(50,50,50,50);
-//	}
-//	else {	
-/*	  
-  if (mousePressed) {
-	  background(255,255,255);
-	  fill(0,0,0);
-	  textSize(12);
-	  text("Pressed", 100, 300);
-	  text(imgs.size(), 100, 400);
-	  text(imgs.get(0).toString(), 100, 400);
-	  imageMode(CENTER);
-	  switch(counter) {
-	  	case 0:
-	  		image(img1, 50, 50, 100, 100);
-	  		break;
-	  	case 1:
-	  		image(img2, 50, 50, 100, 100);
-	  		break;
-	  	case 2:
-	  		image(img3, 50, 50, 100, 100);
-	  		break;
-	  	case 3:
-	  		image(img4, 50, 50, 100, 100);
-	  		break;
-	  	case 4:
-	  		image(img5, 50, 50, 100, 100);
-	  		break;
-	  	default:
-	  		break;
-	  }
-	  
-	  //image(imgs.get(counter), 50, 50);
-  } else {
-	  fill(0,0,0);
-	  textSize(32);
-	  text("Pressed", 100, 300);
-	  fill(counter, counter, 0);
-  }
-  */
+	if(player != null) {
+		fill(230, 40, 10);
+		text("Health:", 5, 610);
+		rect(145, 600, 100, 15, 10);
+		
+		fill(20, 230, 115);
+		text("Atk Pwr:", 5, 645);
+		rect(145, 635, 155, 15, 10);
+		
+		fill(255, 240, 60);
+		text("Ability:", 5, 680);
+		text("MegaBuster!", 145, 680);
+	}
 }
 
   public int sketchWidth() { return 480; }
