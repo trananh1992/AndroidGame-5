@@ -1,4 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="processing.test.sketch_121202c">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="android.Game">
   <uses-sdk android:minSdkVersion="10"/>
   <application android:debuggable="true" android:icon="@drawable/icon" android:label="sketch_121202c">
     <activity android:name=".sketch_121202c">
@@ -7,6 +7,6 @@
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
     </activity>
-    <activity android:name=".GameActivity"/>
+  	<activity android:name=".GameActivity"/>
   </application>
 </manifest>
