@@ -12,7 +12,7 @@ import java.io.*;
 import java.util.*; 
 import sprites.*;
 
-public class sketch_121202c extends PApplet {
+public class CharSelectActivity extends PApplet {
 
 	private static int characters = 2;
 	ArrayList<PImage> imgsM = new ArrayList<PImage>();
@@ -97,7 +97,9 @@ public class sketch_121202c extends PApplet {
 		{
 			text("HEYHEY!", 50, 50);
 			Intent i = new Intent(this, GameActivity.class);
-			startActivity(i);
+			i.putExtra("PLAYER", player1);
+			
+			this.startActivity(i);
 		}
 	}
 	
