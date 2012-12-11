@@ -6,7 +6,7 @@ import processing.core.*;
 public class GameOverActivity extends PApplet{
 	
 	public void setup() {
-		
+		orientation(LANDSCAPE);
 	}
 	
 	public void draw() {

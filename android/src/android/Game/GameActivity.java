@@ -114,6 +114,22 @@ public class GameActivity extends PApplet{
 				y = 0;
 			}
 		}
+		//big fat fancy way of saying collision!
+		if(checkCollision()) {
+			Intent i = new Intent(this, GameOverActivity.class);
+			this.startActivity(i);
+		}
+		
+		
 	}
-
+	
+	private boolean checkCollision() {
+		if(displayWidth-enemy.getX() <= displayHeight/4+displayWidth/16 && displayWidth-enemy.getX() >= displayHeight/4+displayWidth/16 - 10)
+			if(y > -50)
+				return true;
+			else
+				return false;
+		else return false;
+	}
+	
 }
