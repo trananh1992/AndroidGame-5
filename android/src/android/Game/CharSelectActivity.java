@@ -18,7 +18,7 @@ public class CharSelectActivity extends PApplet {
 	ArrayList<PImage> imgsM = new ArrayList<PImage>();
 	ArrayList<PImage> imgsQ = new ArrayList<PImage>();
 	
-	PImage megamanImg, maskImg;
+	PImage megamanImg, quagsireImg;
 	PGraphics pg;
 	PImage toDraw;
 	Playable player;
@@ -28,6 +28,8 @@ public class CharSelectActivity extends PApplet {
 	public void setup() {
 		megamanImg = loadImage("megaman.png");
 		megamanImg.loadPixels();
+		quagsireImg = loadImage("quagsire.png");
+		quagsireImg.loadPixels();
 		orientation(LANDSCAPE);
 		String s = "";
 		for(int i = 1; i < 6; i++) {
@@ -53,16 +55,11 @@ public class CharSelectActivity extends PApplet {
 	void drawCharacters() {
 		PImage temp = createImage(34, 44, ARGB);
 		temp = megamanImg.get(34*(counter%10), 0, 34, 44);
-		/*pg = createGraphics(displayWidth, displayHeight, P2D);
-		pg.beginDraw();
-		
-		pg.image(megamanImg, 34*(counter%10), 0, 34, 44);
-		//noFill();
-		//copy(megamanImg, 34*(counter%10), 0, 34, 44, displayWidth/16, displayHeight/12, displayHeight/4, displayHeight/4);
-		pg.endDraw();
-		image(pg,  displayWidth/16, displayHeight/12, displayHeight, displayHeight); 
-		*/
 		image(temp,  displayWidth/16, displayHeight/12, displayHeight/4, displayHeight/4); 
+		
+		PImage temp2 = createImage(64, 82, ARGB);
+		temp2 = quagsireImg.get(64*(counter%5), 0, 64, 82);
+		image(temp2,  displayWidth/16, 4*displayHeight/12, displayHeight/4, displayHeight/4); 
 	}
 	
 	void drawStats() {
@@ -90,10 +87,10 @@ public class CharSelectActivity extends PApplet {
 	void drawStartButton() {
 		textSize(36);
 		fill(45, 255, 185);
-		rect(5*displayWidth/8, 6*displayHeight/8, displayWidth/4, displayHeight/12, 10);
+		rect(displayWidth/2-30, 4*displayHeight/6+50, displayWidth/4, displayHeight/12, 10);
 	}
 	public void mousePressed(){
-		if((mouseY > 4*displayHeight/6 && mouseX < displayHeight)  &&(mouseX > 4*displayWidth/8 && mouseX < 7*displayWidth/8))
+		if((mouseY > 4*displayHeight/6 && mouseX < displayHeight) && (mouseX > 4*displayWidth/8 && mouseX < 7*displayWidth/8))
 		{
 			text("HEYHEY!", 50, 50);
 			Intent i = new Intent(this, GameActivity.class);
@@ -110,6 +107,7 @@ public class CharSelectActivity extends PApplet {
 		if(player1 != null ) {
 			drawStats();
 			drawStartButton();
+			fill(30,30,30);
 			text("STAART!!", displayWidth/2-30, 5*displayHeight/6);
 			//text(mouseX, 100, 700);
 			//text(mouseY, 200, 700);
@@ -119,7 +117,7 @@ public class CharSelectActivity extends PApplet {
 		counter++;
 		drawCharacters();
 		//image(imgsM.get(counter%5), displayWidth/16, displayHeight/12, displayHeight/4, displayHeight/4);
-		image(imgsQ.get(counter%3), displayWidth/16, (displayHeight/4)+displayHeight/12, displayHeight/4, displayHeight/4);
+		//image(imgsQ.get(counter%3), displayWidth/16, (displayHeight/4)+displayHeight/12, displayHeight/4, displayHeight/4);
 		
 		if (mousePressed) {
 			if (mouseY < 150) {

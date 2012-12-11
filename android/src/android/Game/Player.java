@@ -10,6 +10,7 @@ public class Player implements Parcelable{
 	String ability;
 	String heroName;
 	
+	
 	Player(){
 		//player = new Megaman();
 		attackPower = 10;
