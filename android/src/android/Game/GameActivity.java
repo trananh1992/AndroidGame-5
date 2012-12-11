@@ -11,17 +11,22 @@ public class GameActivity extends PApplet{
 	PImage foreground;
 	PImage megaman;
 	PImage quagsire;
+	PImage goomba;
 	private static String bgImg = "mushroomKingdom.png";
 	private static String fgImg = "tiles.png";
+	
 	Player player;
 	int counter;
 	int bgCounter;
 	int y = 0;
 	JumpState jump;
-		
+	Goomba enemy;
+	boolean enemyExists;
+	
 	public void setup(){
 		megaman = loadImage("megaman.png");
 		quagsire = loadImage("quagsire.png");
+		goomba = loadImage("goomba.png");
 		jump = JumpState.NONE;
 		counter = bgCounter = 0;
 		orientation(LANDSCAPE);
@@ -30,6 +35,7 @@ public class GameActivity extends PApplet{
 		background = loadImage(bgImg);
 		foreground = loadImage(fgImg);
 		frameRate(15);
+		enemyExists = false;
 		//foreground = loadImage(fgImg);
 	}
 	
@@ -61,6 +67,12 @@ public class GameActivity extends PApplet{
 		}
 	}
 	
+	void drawGoomba() {
+		PImage temp = createImage(24, 24, ARGB);
+		temp = goomba.get(24*(counter%4), 0, 24, 24);
+		image(temp, displayWidth - enemy.getX(), 7*displayHeight/12, displayHeight/5, displayHeight/5);
+	}
+	
 	public void mousePressed() {
 		if(jump == JumpState.NONE)
 			jump = JumpState.RISING;
@@ -72,6 +84,19 @@ public class GameActivity extends PApplet{
 		drawBackground();
 		drawForeground();
 		drawCharacter();
+		if(!enemyExists) {
+			enemy = new Goomba();
+			enemyExists = true;
+			enemy.setX(0);
+		}
+		
+		if(enemyExists) {
+			drawGoomba();
+			enemy.moveForward();
+			if (enemy.getX() > displayWidth+25)
+				enemyExists = false;
+		}
+		
 		counter = (counter + 1) % displayWidth;
 		if(counter % 10 == 0)
 			bgCounter++;
